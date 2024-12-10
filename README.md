@@ -1,1 +1,1 @@
-# static
+To check Sonarcloud analysis
