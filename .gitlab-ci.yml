@@ -1,10 +1,9 @@
 stages:
-    - runSCAusingSnyk
+    - runSASTusingSonarcloud
 
-run-sca-job:
-    stage: runSCAusingSnyk
+run-sast-job:
+    stage: runSASTusingSonarcloud
     image: maven:3.8.5-openjdk-11-slim
     script: |
-      SNYK_TOKEN=$SNYK_TOKEN
-      export SNYK_TOKEN
-      mvn snyk:test -fn
+      mvn verify package sonar:sonar -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.organization=project-23 -Dsonar.projectKey=project-23 -Dsonar.login=$SONAR_TOKEN
+
